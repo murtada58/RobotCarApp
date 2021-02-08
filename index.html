@@ -38,11 +38,11 @@
         </section>
 
         <main id="control">
-            <div class="move-buttons" id="UP" onmousedown="sendData('W\n')" onmouseup="sendData('P\n')"><h2>UP</h2></div>
-            <div class="move-buttons" id="LEFT" onmousedown="sendData('A\n')" onmouseup="sendData('P\n')"><h2>LEFT</h2></div>
-            <div class="move-buttons" id="DOWN" onmousedown="sendData('S\n')" onmouseup="sendData('P\n')"><h2>DOWN</h2></div>
-            <div class="move-buttons" id="RIGHT" onmousedown="sendData('D\n')" onmouseup="sendData('P\n')"><h2>RIGHT</h2></div>
-            <div class="move-buttons" id="STOP" onmousedown="sendData('P\n')"><h2>STOP</h2></div>
+            <button class="move-buttons" id="UP" onmousedown="sendData('W\n')" onmouseup="sendData('P\n')">UP</button>
+            <button class="move-buttons" id="LEFT" onmousedown="sendData('A\n')" onmouseup="sendData('P\n')">LEFT</button>
+            <button class="move-buttons" id="DOWN" onmousedown="sendData('S\n')" onmouseup="sendData('P\n')">DOWN</button>
+            <button class="move-buttons" id="RIGHT" onmousedown="sendData('D\n')" onmouseup="sendData('P\n')">RIGHT</button>
+            <button class="move-buttons" id="STOP" onmousedown="sendData('P\n')">STOP</button>
             <div class="slidecontainer">
                 <h2 id="move-speed-label">MOVE SPEED:</h2>
                 <input type="range" min="0" max="255" value="255" class="slider" id="move-speed">

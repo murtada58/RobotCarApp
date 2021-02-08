@@ -123,6 +123,9 @@ body {
   text-align: center;
   display: inline-block;
   background-color: #0079BD;
+  border: none;
+  color: #FFFFFF;
+  font-size: 2em;
 }
 
 .move-buttons:hover {
