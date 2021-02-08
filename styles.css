@@ -1,0 +1,240 @@
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: Roboto Condensed;
+}
+
+.grid-container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 3fr;
+      grid-template-columns: 1fr 3fr;
+  -ms-grid-rows: 1fr 9fr;
+      grid-template-rows: 1fr 9fr;
+      grid-template-areas: "name navbar" "info control";
+  height: 100vh;
+}
+
+#name {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: name;
+  background-color: #454545;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -ms-grid;
+  display: grid;
+  align-items: center;
+  text-align: center;
+}
+
+#name a {
+  text-decoration: none;
+  font-size: 2em;
+  color: #FFFFFF;
+}
+
+#navbar {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: navbar;
+  background-color: #454545;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 3fr 1fr;
+      grid-template-columns: 3fr 1fr;
+      grid-template-areas: "None connect";
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#navbar div {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: connect;
+  -ms-grid-column-align: end;
+      justify-self: end;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0.2em;
+  padding: 0.2em;
+  background-color: #0079BD;
+  font-size: 2em;
+  color: #FFFFFF;
+}
+
+#navbar :hover {
+  cursor: pointer;
+}
+
+#info {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  grid-area: info;
+  background-color: #646464;
+  color: #FFFFFF;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.info-content {
+  padding-left: 1em;
+}
+
+.info-content div {
+  text-align: center;
+  background-color: #0079BD;
+  color: #B6B6B6;
+  padding: 0em;
+}
+
+.info-content div :hover {
+  cursor: pointer;
+}
+
+#MANUAL {
+  color: #FFFFFF;
+}
+
+#connection-status {
+  color: #B6B6B6;
+}
+
+#control {
+  -ms-grid-row: 2;
+  -ms-grid-column: 2;
+  grid-area: control;
+  background-color: #FFFFFF;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+  -ms-grid-rows: 1fr 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-gap: 1em;
+  padding: 1em;
+  color: #FFFFFF;
+}
+
+.move-buttons {
+  text-align: center;
+  display: inline-block;
+  background-color: #0079BD;
+}
+
+.move-buttons:hover {
+  cursor: pointer;
+}
+
+.move-buttons:active {
+  background-color: #454545;
+}
+
+#UP {
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-column: 2 / 3;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 1;
+  grid-row: 1 / 2;
+}
+
+#LEFT {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-column: 1 / 2;
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 1;
+  grid-row: 2 / 3;
+}
+
+#DOWN {
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-column: 2 / 3;
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 1;
+  grid-row: 2 / 3;
+}
+
+#RIGHT {
+  -ms-grid-column: 3;
+  -ms-grid-column-span: 1;
+  grid-column: 3 / 4;
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 1;
+  grid-row: 2 / 3;
+}
+
+#STOP {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-column: 1 / 4;
+  -ms-grid-row: 3;
+  -ms-grid-row-span: 1;
+  grid-row: 3 / 4;
+}
+
+.slidecontainer {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-column: 1 / 4;
+  -ms-grid-row: 4;
+  -ms-grid-row-span: 1;
+  grid-row: 4 / 5;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 8fr;
+      grid-template-columns: 1fr 8fr;
+  -ms-grid-rows: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#move-speed-label {
+  font-size: 1em;
+  color: #000000;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-column: 1 / 2;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 1;
+  grid-row: 1 / 2;
+}
+
+#move-speed {
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-column: 2 / 3;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 1;
+  grid-row: 1 / 2;
+  width: 100%;
+}
+
+#turn-speed-label {
+  font-size: 1em;
+  color: #000000;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-column: 1 / 2;
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 1;
+  grid-row: 2 / 3;
+}
+
+#turn-speed {
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-column: 2 / 3;
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 1;
+  grid-row: 2 / 3;
+  width: 100%;
+}
+/*# sourceMappingURL=styles.css.map */

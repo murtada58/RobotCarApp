@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="styles.css">
+    <title>Bluetooth Robot Car App</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/addons/p5.dom.min.js"></script>
+    <script src="https://unpkg.com/p5ble@0.0.4/dist/p5.ble.js"></script>
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <div class="grid-container">
+        <div id="name"><a href="#">Robot Car App</a></div>
+
+        <header id="navbar">
+            <div id="connect" onmousedown="connectToBle()">Connect</div>
+        </header>
+
+        <section id="info">
+            <div class="info">
+                <h1>STATUS</h1>
+                <div class="info-content">
+                    <h2 id="connection-status">DISCONNECTED</h2>
+                    <h2>MOVE SPEED: 255</h2>
+                    <h2>TURN SPEED: 255</h2>
+                </div>
+                <hr>
+                <h1>MODE</h1>
+                <div class="info-content">
+                    <div id="MANUAL" onmousedown="sendData('M\n')"><h2>MANUAL CONTROL</h2></div>
+                    <div id="FOLLOWER" onmousedown="sendData('L\n')"><h2>LINE FOLLOWER</h2></div>
+                    <div id="AVOIDANCE" onmousedown="sendData('O\n')"><h2>OBSTACLE AVOIDANCE</h2></div>
+                </div>
+            </div>
+        </section>
+
+        <main id="control">
+            <div class="move-buttons" id="UP" onmousedown="sendData('W\n')" onmouseup="sendData('P\n')"><h2>UP</h2></div>
+            <div class="move-buttons" id="LEFT" onmousedown="sendData('A\n')" onmouseup="sendData('P\n')"><h2>LEFT</h2></div>
+            <div class="move-buttons" id="DOWN" onmousedown="sendData('S\n')" onmouseup="sendData('P\n')"><h2>DOWN</h2></div>
+            <div class="move-buttons" id="RIGHT" onmousedown="sendData('D\n')" onmouseup="sendData('P\n')"><h2>RIGHT</h2></div>
+            <div class="move-buttons" id="STOP" onmousedown="sendData('P\n')"><h2>STOP</h2></div>
+            <div class="slidecontainer">
+                <h2 id="move-speed-label">MOVE SPEED:</h2>
+                <input type="range" min="0" max="255" value="255" class="slider" id="move-speed">
+                <h2 id="turn-speed-label">TURN SPEED:</h2>
+                <input type="range" min="0" max="255" value="255" class="slider" id="turn-speed">
+            </div>
+        </main>
+    </div>
+</body>
+</html>
