@@ -1,3 +1,5 @@
+$main-color: #1583c4;
+
 body {
     margin: 0;
     padding: 0;
@@ -49,8 +51,9 @@ body {
     justify-self: end;
     width: fit-content;
     margin: 0.2em;
+    margin-right: 0.5em;
     padding: 0.2em;
-    background-color: #0079BD;
+    background-color: $main-color;
     font-size: 2em;
     color: #FFFFFF;
 }
@@ -86,7 +89,7 @@ button {
     padding-left: 1em;
     display: grid;
     button {
-        background-color: #0079BD;
+        background-color: $main-color;
         color: #B6B6B6;
         padding: 0em;
         margin: 0.5em;
@@ -118,7 +121,7 @@ button:hover {
 
 .move-buttons {
     display: inline-block;
-    background-color: #0079BD;
+    background-color: $main-color;
     border: none;
     color: #FFFFFF;
     font-size: 2em;
@@ -187,3 +190,34 @@ button:hover {
     grid-row: 2 / 3;
     width: 100%;
 }
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 25px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+  }
+  
+  .slider:hover {
+    opacity: 1;
+  }
+  
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background: $main-color;
+    cursor: pointer;
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: $main-color;
+    cursor: pointer;
+  }

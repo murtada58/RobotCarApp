@@ -46,16 +46,26 @@ if (isTouchDevice)
         }
     })
 
-    document.getElementById("MANUAL").addEventListener("touchstart", function(){sendData("M\n");})
+    document.getElementById("MANUAL").addEventListener("touchstart", function(){
+        sendData("M\n");
+        document.getElementById("MANUAL").style.color = "#FFFFFF";
+        document.getElementById("FOLLOWER").style.color = "#B6B6B6";
+        document.getElementById("AVOIDANCE").style.color = "#B6B6B6";
+    })
 
-    document.getElementById("FOLLOWER").addEventListener("touchstart", function(){sendData("L\n");})
+    document.getElementById("FOLLOWER").addEventListener("touchstart", function(){
+        sendData("L\n");
+        document.getElementById("MANUAL").style.color = "#B6B6B6";
+        document.getElementById("FOLLOWER").style.color = "#FFFFFF";
+        document.getElementById("AVOIDANCE").style.color = "#B6B6B6";
+    })
 
-    document.getElementById("AVOIDANCE").addEventListener("touchstart", function(){sendData("O\n");})
-
-    /*document.getElementById("disconnect").addEventListener("touchstart", function(){
-        sendData("P\n");
-        setTimeout(function(){myBLE.disconnect();}, 1000);
-    })*/
+    document.getElementById("AVOIDANCE").addEventListener("touchstart", function(){
+        sendData("O\n");
+        document.getElementById("MANUAL").style.color = "#B6B6B6";
+        document.getElementById("FOLLOWER").style.color = "#B6B6B6";
+        document.getElementById("AVOIDANCE").style.color = "#FFFFFF";
+    })
 }
 else
 {
@@ -80,17 +90,26 @@ else
         }
     })
 
-    document.getElementById("MANUAL").addEventListener("mousedown", function(){sendData("M\n");})
+    document.getElementById("MANUAL").addEventListener("mousedown", function(){
+        sendData("M\n");
+        document.getElementById("MANUAL").style.color = "#FFFFFF";
+        document.getElementById("FOLLOWER").style.color = "#B6B6B6";
+        document.getElementById("AVOIDANCE").style.color = "#B6B6B6";
+    })
 
-    document.getElementById("FOLLOWER").addEventListener("mousedown", function(){sendData("L\n");})
+    document.getElementById("FOLLOWER").addEventListener("mousedown", function(){
+        sendData("L\n");
+        document.getElementById("MANUAL").style.color = "#B6B6B6";
+        document.getElementById("FOLLOWER").style.color = "#FFFFFF";
+        document.getElementById("AVOIDANCE").style.color = "#B6B6B6";
+    })
 
-    document.getElementById("AVOIDANCE").addEventListener("mousedown", function(){sendData("O\n");})
-
-    /*document.getElementById("disconnect").addEventListener("mousedown", function(){
-        sendData("P\n");
-        setTimeout(function(){myBLE.disconnect();}, 1000);
-        
-    })*/
+    document.getElementById("AVOIDANCE").addEventListener("mousedown", function(){
+        sendData("O\n");
+        document.getElementById("MANUAL").style.color = "#B6B6B6";
+        document.getElementById("FOLLOWER").style.color = "#B6B6B6";
+        document.getElementById("AVOIDANCE").style.color = "#FFFFFF";
+    })
 }
 
 
