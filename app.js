@@ -37,7 +37,7 @@ if (isTouchDevice)
     document.getElementById("RIGHT").addEventListener("touchstart", function(){sendData("D\n");})
     document.getElementById("RIGHT").addEventListener("touchend", function(){sendData("P\n");})
 
-    document.getElementById("connect").addEventListener("touchstart", function(){connectToBle();})
+    document.getElementById("connect").addEventListener("click", function(){connectToBle();})
 
     document.getElementById("MANUAL").addEventListener("touchstart", function(){sendData("M\n");})
 
@@ -47,7 +47,7 @@ if (isTouchDevice)
 
     document.getElementById("disconnect").addEventListener("touchstart", function(){
         sendData("P\n");
-        myBLE.disconnect();
+        setTimeout(function(){myBLE.disconnect();}, 1000);
     })
 }
 else
