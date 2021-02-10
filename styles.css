@@ -13,8 +13,7 @@ body {
       grid-template-columns: 1fr 3fr;
   -ms-grid-rows: 1fr 9fr;
       grid-template-rows: 1fr 9fr;
-      grid-template-areas: "name navbar"
- "info control";
+      grid-template-areas: "name navbar" "info control";
   height: 100vh;
   width: 100vw;
 }
@@ -194,7 +193,7 @@ button:hover {
   grid-row: 2 / 3;
 }
 
-#STOP {
+#disconnect {
   -ms-grid-column: 1;
   -ms-grid-column-span: 3;
   grid-column: 1 / 4;

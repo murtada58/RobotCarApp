@@ -11,14 +11,16 @@ let isTouchDevice = (('ontouchstart' in window) || (navigator.maxTouchPoints > 0
 console.log(isTouchDevice)
 
 // event listners
-document.getElementById("turn-speed").addEventListener("change", function(){
-    let num = "T" + this.value.toString() + "\n";
-    sendData(num);
-})
-
 document.getElementById("move-speed").addEventListener("change", function(){
     let num = "V" + this.value.toString() + "\n";
     sendData(num);
+    document.getElementById("info-move-speed").innerHTML = "MOVE SPEED: " + this.value.toString();
+})
+
+document.getElementById("turn-speed").addEventListener("change", function(){
+    let num = "T" + this.value.toString() + "\n";
+    sendData(num);
+    document.getElementById("info-turn-speed").innerHTML = "MOVE SPEED: " + this.value.toString();
 })
 
 if (isTouchDevice)
@@ -43,7 +45,10 @@ if (isTouchDevice)
 
     document.getElementById("AVOIDANCE").addEventListener("touchstart", function(){sendData("O\n");})
 
-    document.getElementById("STOP").addEventListener("touchstart", function(){sendData("P\n");})
+    document.getElementById("disconnect").addEventListener("touchstart", function(){
+        sendData("P\n");
+        myBLE.disconnect();
+    })
 }
 else
 {
@@ -67,7 +72,11 @@ else
 
     document.getElementById("AVOIDANCE").addEventListener("mousedown", function(){sendData("O\n");})
 
-    document.getElementById("STOP").addEventListener("mousedown", function(){sendData("P\n");})
+    document.getElementById("disconnect").addEventListener("mousedown", function(){
+        sendData("P\n");
+        setTimeout(function(){myBLE.disconnect();}, 1000);
+        
+    })
 }
 
 
@@ -88,6 +97,8 @@ function gotCharacteristics(error, characteristics) {
 
     myBLE.startNotifications(myCharacteristic, gotValue, 'string');
     isConnected = true
+    document.getElementById("connection-status").innerHTML = "CONNECTED";
+    document.getElementById("connection-status").style.color = "#FFFFFF";
     myBLE.onDisconnected(onDisconnected)
 }
 
@@ -99,6 +110,8 @@ function gotValue(value) {
 function onDisconnected() {
     console.log("disconncted");
     isConnected = false;
+    document.getElementById("connection-status").innerHTML = "DISCONNECTED";
+    document.getElementById("connection-status").style.color = "#B6B6B6";
 }
 
 function sendData(command) {
