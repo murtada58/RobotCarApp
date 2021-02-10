@@ -85,6 +85,9 @@ else
 function connectToBle() {
     // Connect to a device by passing the service UUID
     myBLE.connect(serviceUuid, gotCharacteristics);
+    if (!navigator.bluetooth) {
+        alert('Web Bluetooth API is not available in this browser try chrome instead')
+    }
 }
 
 // A function that will be called once got characteristics
