@@ -1,6 +1,8 @@
 body {
     margin: 0;
+    padding: 0;
     height: 100vh;
+    width: 100vw;
     font-family:Roboto Condensed;
 }
 
@@ -13,6 +15,7 @@ body {
         "name navbar"
         "info control";
     height: 100vh;
+    width: 100vw;
 }
 
 #name {
@@ -52,25 +55,39 @@ body {
     }
 }
 
+
+button {
+    border: none;
+    text-decoration: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
 #info {
     grid-area: info;
     background-color: #646464;
     color: #FFFFFF;
     padding-left: 1em;
     padding-right: 1em;
+
+    h1, h2{
+        margin: 0.5em;
+    }
 }
 
 .info-content {
     padding-left: 1em;
-    div {
-        text-align: center;
+    display: grid;
+    button {
         background-color: #0079BD;
         color: #B6B6B6;
         padding: 0em;
-        :hover {
-            cursor: pointer;
-        }
+        margin: 0.5em;
     }
+}
+
+button:hover {
+    cursor: pointer;
 }
 
 #MANUAL {
@@ -93,7 +110,6 @@ body {
 }
 
 .move-buttons {
-    text-align: center;
     display: inline-block;
     background-color: #0079BD;
     border: none;

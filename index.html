@@ -15,39 +15,37 @@
     <div class="grid-container">
         <div id="name"><a href="#">Robot Car App</a></div>
 
-        <header id="navbar">
-            <div id="connect" onmousedown="connectToBle()">Connect</div>
-        </header>
+        <nav id="navbar">
+            <div id="connect">Connect</div>
+        </nav>
 
         <section id="info">
-            <div class="info">
-                <h1>STATUS</h1>
-                <div class="info-content">
-                    <h2 id="connection-status">DISCONNECTED</h2>
-                    <h2>MOVE SPEED: 255</h2>
-                    <h2>TURN SPEED: 255</h2>
-                </div>
-                <hr>
-                <h1>MODE</h1>
-                <div class="info-content">
-                    <div id="MANUAL" onmousedown="sendData('M\n')"><h2>MANUAL CONTROL</h2></div>
-                    <div id="FOLLOWER" onmousedown="sendData('L\n')"><h2>LINE FOLLOWER</h2></div>
-                    <div id="AVOIDANCE" onmousedown="sendData('O\n')"><h2>OBSTACLE AVOIDANCE</h2></div>
-                </div>
+            <h1>STATUS</h1>
+            <div class="info-content">
+                <h2 id="connection-status">DISCONNECTED</h2>
+                <h2>MOVE SPEED: 255</h2>
+                <h2>TURN SPEED: 255</h2>
+            </div>
+            <hr>
+            <h1>MODE</h1>
+            <div class="info-content">
+                <button id="MANUAL"><h2>MANUAL CONTROL</h2></button>
+                <button id="FOLLOWER"><h2>LINE FOLLOWER</h2></button>
+                <button id="AVOIDANCE"><h2>OBSTACLE AVOIDANCE</h2></button>
             </div>
         </section>
 
         <main id="control">
-            <button class="move-buttons" id="UP" onmousedown="sendData('W\n')" onmouseup="sendData('P\n')">UP</button>
-            <button class="move-buttons" id="LEFT" onmousedown="sendData('A\n')" onmouseup="sendData('P\n')">LEFT</button>
-            <button class="move-buttons" id="DOWN" onmousedown="sendData('S\n')" onmouseup="sendData('P\n')">DOWN</button>
-            <button class="move-buttons" id="RIGHT" onmousedown="sendData('D\n')" onmouseup="sendData('P\n')">RIGHT</button>
-            <button class="move-buttons" id="STOP" onmousedown="sendData('P\n')">STOP</button>
+            <button class="move-buttons" id="UP">UP</button>
+            <button class="move-buttons" id="LEFT">LEFT</button>
+            <button class="move-buttons" id="DOWN">DOWN</button>
+            <button class="move-buttons" id="RIGHT">RIGHT</button>
+            <button class="move-buttons" id="STOP">STOP</button>
             <div class="slidecontainer">
                 <h2 id="move-speed-label">MOVE SPEED:</h2>
-                <input type="range" min="0" max="255" value="255" class="slider" id="move-speed">
+                <input class="slider" id="move-speed" type="range" min="0" max="255" value="255">
                 <h2 id="turn-speed-label">TURN SPEED:</h2>
-                <input type="range" min="0" max="255" value="255" class="slider" id="turn-speed">
+                <input class="slider" id="turn-speed" type="range" min="0" max="255" value="255">
             </div>
         </main>
     </div>
