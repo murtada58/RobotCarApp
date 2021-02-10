@@ -37,22 +37,22 @@ body {
     background-color: #454545;
     display: grid;
     grid-template-columns: 3fr 1fr;
-    grid-template-areas: 
-        "None connect";
+    grid-template-areas: "None connect";
     align-items: center;
-    div {
-        grid-area: connect;
-        justify-self: end;
-        width: fit-content;
-        margin: 0.2em;
-        padding: 0.2em;
-        background-color: #0079BD;
-        font-size: 2em;
-        color: #FFFFFF;
-    }
     :hover {
         cursor: pointer;
     }
+}
+
+#connect {
+    grid-area: connect;
+    justify-self: end;
+    width: fit-content;
+    margin: 0.2em;
+    padding: 0.2em;
+    background-color: #0079BD;
+    font-size: 2em;
+    color: #FFFFFF;
 }
 
 
@@ -67,6 +67,7 @@ button {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    touch-action: manipulation;
 }
 
 #info {
@@ -109,7 +110,7 @@ button:hover {
     background-color: #FFFFFF;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
     grid-gap: 1em;
     padding: 1em;
     color: #FFFFFF;   
@@ -152,14 +153,9 @@ button:hover {
     grid-row: 2 / 3;
 }
 
-#disconnect {
-    grid-column: 1 / 4;
-    grid-row: 3 / 4;
-}
-
 .slidecontainer {
     grid-column: 1 / 4;
-    grid-row: 4 / 5;
+    grid-row: 3 / 4;
     display: grid;
     grid-template-columns: 1fr 8fr;
     grid-template-rows: 1fr 1fr;

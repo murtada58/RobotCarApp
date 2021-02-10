@@ -37,7 +37,14 @@ if (isTouchDevice)
     document.getElementById("RIGHT").addEventListener("touchstart", function(){sendData("D\n");})
     document.getElementById("RIGHT").addEventListener("touchend", function(){sendData("P\n");})
 
-    document.getElementById("connect").addEventListener("click", function(){connectToBle();})
+    document.getElementById("connect").addEventListener("click", function(){
+        if (!isConnected){connectToBle();}
+        else
+        {
+            sendData("P\n");
+            setTimeout(function(){myBLE.disconnect();}, 1000);
+        }
+    })
 
     document.getElementById("MANUAL").addEventListener("touchstart", function(){sendData("M\n");})
 
@@ -45,10 +52,10 @@ if (isTouchDevice)
 
     document.getElementById("AVOIDANCE").addEventListener("touchstart", function(){sendData("O\n");})
 
-    document.getElementById("disconnect").addEventListener("touchstart", function(){
+    /*document.getElementById("disconnect").addEventListener("touchstart", function(){
         sendData("P\n");
         setTimeout(function(){myBLE.disconnect();}, 1000);
-    })
+    })*/
 }
 else
 {
@@ -64,7 +71,14 @@ else
     document.getElementById("RIGHT").addEventListener("mousedown", function(){sendData("D\n");})
     document.getElementById("RIGHT").addEventListener("mouseup", function(){sendData("P\n");})
 
-    document.getElementById("connect").addEventListener("mousedown", function(){connectToBle();})
+    document.getElementById("connect").addEventListener("mousedown", function(){
+        if (!isConnected){connectToBle();}
+        else
+        {
+            sendData("P\n");
+            setTimeout(function(){myBLE.disconnect();}, 1000);
+        }
+    })
 
     document.getElementById("MANUAL").addEventListener("mousedown", function(){sendData("M\n");})
 
@@ -72,11 +86,11 @@ else
 
     document.getElementById("AVOIDANCE").addEventListener("mousedown", function(){sendData("O\n");})
 
-    document.getElementById("disconnect").addEventListener("mousedown", function(){
+    /*document.getElementById("disconnect").addEventListener("mousedown", function(){
         sendData("P\n");
         setTimeout(function(){myBLE.disconnect();}, 1000);
         
-    })
+    })*/
 }
 
 
@@ -102,6 +116,7 @@ function gotCharacteristics(error, characteristics) {
     isConnected = true
     document.getElementById("connection-status").innerHTML = "CONNECTED";
     document.getElementById("connection-status").style.color = "#FFFFFF";
+    document.getElementById("connect").innerHTML = "DISCONNECT"
     myBLE.onDisconnected(onDisconnected)
 }
 
@@ -115,6 +130,7 @@ function onDisconnected() {
     isConnected = false;
     document.getElementById("connection-status").innerHTML = "DISCONNECTED";
     document.getElementById("connection-status").style.color = "#B6B6B6";
+    document.getElementById("connect").innerHTML = "CONNECT"
 }
 
 function sendData(command) {

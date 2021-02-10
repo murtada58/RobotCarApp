@@ -53,7 +53,11 @@ body {
           align-items: center;
 }
 
-#navbar div {
+#navbar :hover {
+  cursor: pointer;
+}
+
+#connect {
   -ms-grid-row: 1;
   -ms-grid-column: 2;
   grid-area: connect;
@@ -69,10 +73,6 @@ body {
   color: #FFFFFF;
 }
 
-#navbar :hover {
-  cursor: pointer;
-}
-
 button {
   border: none;
   text-decoration: none;
@@ -83,6 +83,8 @@ button {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
 }
 
 #info {
@@ -133,8 +135,8 @@ button:hover {
   display: grid;
   -ms-grid-columns: 1fr 1fr 1fr;
       grid-template-columns: 1fr 1fr 1fr;
-  -ms-grid-rows: 1fr 1fr 1fr 1fr;
-      grid-template-rows: 1fr 1fr 1fr 1fr;
+  -ms-grid-rows: 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr;
   grid-gap: 1em;
   padding: 1em;
   color: #FFFFFF;
@@ -193,22 +195,13 @@ button:hover {
   grid-row: 2 / 3;
 }
 
-#disconnect {
+.slidecontainer {
   -ms-grid-column: 1;
   -ms-grid-column-span: 3;
   grid-column: 1 / 4;
   -ms-grid-row: 3;
   -ms-grid-row-span: 1;
   grid-row: 3 / 4;
-}
-
-.slidecontainer {
-  -ms-grid-column: 1;
-  -ms-grid-column-span: 3;
-  grid-column: 1 / 4;
-  -ms-grid-row: 4;
-  -ms-grid-row-span: 1;
-  grid-row: 4 / 5;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 8fr;
