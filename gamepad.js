@@ -75,9 +75,6 @@ function getGamepadState() {
         let rightAnalogHorizontal = gamepad.axes[2].toFixed(1);
         let rightAnalogVertical = gamepad.axes[3].toFixed(1);
 
-        document.getElementById("0").innerHTML = leftAnalogHorizontal;
-        document.getElementById("1").innerHTML = leftAnalogVertical;
-
         if (Math.abs(leftAnalogHorizontal) > 1 && Math.abs(leftAnalogHorizontal) > Math.abs(leftAnalogVertical))
         {
             lastSentAnalog = Math.abs(leftAnalogHorizontal);
