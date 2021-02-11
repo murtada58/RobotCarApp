@@ -36,6 +36,27 @@ function getGamepadState() {
                 currentMoveButton = button.id.toString();
                 //console.log(button.id)
             }
+            else if(button.id === 0)
+            {
+                sendData("M\n");
+                document.getElementById("MANUAL").style.color = "#FFFFFF";
+                document.getElementById("FOLLOWER").style.color = "#B6B6B6";
+                document.getElementById("AVOIDANCE").style.color = "#B6B6B6";
+            }
+            else if (button.id === 1)
+            {
+                sendData("O\n");
+                document.getElementById("MANUAL").style.color = "#B6B6B6";
+                document.getElementById("FOLLOWER").style.color = "#B6B6B6";
+                document.getElementById("AVOIDANCE").style.color = "#FFFFFF";
+            }
+            else if (button.id === 2)
+            {
+                sendData("L\n");
+                document.getElementById("MANUAL").style.color = "#B6B6B6";
+                document.getElementById("FOLLOWER").style.color = "#FFFFFF";
+                document.getElementById("AVOIDANCE").style.color = "#B6B6B6";
+            }
             
         }
 
