@@ -102,6 +102,10 @@ button {
   margin: 0.5em;
 }
 
+#info h1 {
+  margin-left: 0em;
+}
+
 .info-content {
   padding-left: 1em;
   display: -ms-grid;
@@ -124,6 +128,10 @@ button:hover {
 }
 
 #connection-status {
+  color: #B6B6B6;
+}
+
+#controller-connection-status {
   color: #B6B6B6;
 }
 

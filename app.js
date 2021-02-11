@@ -4,6 +4,7 @@ let myCharacteristic2;
 let myValue = 0;
 let myBLE;
 let isConnected = false;
+
 myBLE = new p5ble();
 
 let isTouchDevice = (('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
@@ -20,7 +21,7 @@ document.getElementById("move-speed").addEventListener("change", function(){
 document.getElementById("turn-speed").addEventListener("change", function(){
     let num = "T" + this.value.toString() + "\n";
     sendData(num);
-    document.getElementById("info-turn-speed").innerHTML = "MOVE SPEED: " + this.value.toString();
+    document.getElementById("info-turn-speed").innerHTML = "TURN SPEED: " + this.value.toString();
 })
 
 if (isTouchDevice)
