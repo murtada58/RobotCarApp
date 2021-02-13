@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   font-family: Roboto Condensed;
 }
 
@@ -15,7 +15,7 @@ body {
       grid-template-rows: 1fr 9fr;
       grid-template-areas: "name navbar" "info control";
   height: 100vh;
-  width: 100vw;
+  width: 100%;
 }
 
 #name {
@@ -23,18 +23,17 @@ body {
   -ms-grid-column: 1;
   grid-area: name;
   background-color: #454545;
+  display: -ms-grid;
+  display: grid;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  display: -ms-grid;
-  display: grid;
-  align-items: center;
   text-align: center;
 }
 
 #name a {
   text-decoration: none;
-  font-size: 2em;
+  font-size: 2rem;
   color: #FFFFFF;
 }
 
@@ -70,7 +69,7 @@ body {
   margin-right: 0.5em;
   padding: 0.2em;
   background-color: #1583c4;
-  font-size: 2em;
+  font-size: 2rem;
   color: #FFFFFF;
 }
 
@@ -156,7 +155,7 @@ button:hover {
   background-color: #1583c4;
   border: none;
   color: #FFFFFF;
-  font-size: 2em;
+  font-size: 2rem;
   min-width: 4em;
 }
 
@@ -223,7 +222,7 @@ button:hover {
 }
 
 #move-speed-label {
-  font-size: 1em;
+  font-size: 1rem;
   color: #000000;
   -ms-grid-column: 1;
   -ms-grid-column-span: 1;
@@ -244,7 +243,7 @@ button:hover {
 }
 
 #turn-speed-label {
-  font-size: 1em;
+  font-size: 1rem;
   color: #000000;
   -ms-grid-column: 1;
   -ms-grid-column-span: 1;
