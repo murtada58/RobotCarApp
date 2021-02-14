@@ -13,7 +13,7 @@ function getGamepadState() {
     // Escape if no gamepad was found
     if (!gamepad)
     {
-        console.log('No gamepad found.');
+        //console.log('No gamepad found.');
         document.getElementById("controller-connection-status").innerHTML = "DISCONNECTED";
         document.getElementById("controller-connection-status").style.color = "#B6B6B6";
         return;
@@ -31,6 +31,8 @@ function getGamepadState() {
         for (const button of pressedButtons) {
             //console.log(button);
             //console.log(`Button ${button.id} was pressed.`)
+            running = false;
+
             if (button.id === 12 || button.id === 13 || button.id === 14 || button.id === 15)
             {
                 currentMoveButton = button.id.toString();
@@ -38,24 +40,48 @@ function getGamepadState() {
             }
             else if(button.id === 0)
             {
+                currentMoveButton = "none";
                 sendData("M\n");
                 document.getElementById("MANUAL").style.color = "#FFFFFF";
                 document.getElementById("FOLLOWER").style.color = "#B6B6B6";
                 document.getElementById("AVOIDANCE").style.color = "#B6B6B6";
+                document.getElementById("CUSTOM").style.color = "#B6B6B6";
+
+                document.getElementById("control").style.display = "grid";
+                document.getElementById("custom-code").style.display = "none";
             }
             else if (button.id === 1)
             {
+                currentMoveButton = "none";
                 sendData("O\n");
                 document.getElementById("MANUAL").style.color = "#B6B6B6";
                 document.getElementById("FOLLOWER").style.color = "#B6B6B6";
                 document.getElementById("AVOIDANCE").style.color = "#FFFFFF";
+                document.getElementById("CUSTOM").style.color = "#B6B6B6";
             }
             else if (button.id === 2)
             {
+                currentMoveButton = "none";
                 sendData("L\n");
                 document.getElementById("MANUAL").style.color = "#B6B6B6";
                 document.getElementById("FOLLOWER").style.color = "#FFFFFF";
                 document.getElementById("AVOIDANCE").style.color = "#B6B6B6";
+                document.getElementById("CUSTOM").style.color = "#B6B6B6";
+            }
+            else if (button.id === 3)
+            {   
+                currentMoveButton = "none";
+                sendData("M\n");
+                document.getElementById("MANUAL").style.color = "#B6B6B6";
+                document.getElementById("FOLLOWER").style.color = "#B6B6B6";
+                document.getElementById("AVOIDANCE").style.color = "#B6B6B6";
+                document.getElementById("CUSTOM").style.color = "#FFFFFF";
+
+                document.getElementById("control").style.display = "none";
+                document.getElementById("custom-code").style.display = "grid";
+                currentLine = 0;
+                running = true;
+                setTimeout(run, 150);
             }
             
         }
@@ -64,10 +90,13 @@ function getGamepadState() {
         {
             lastSentCommand = currentMoveButton;
             if (lastSentCommand === "12"){sendData("W\n");}
-            else if (lastSentCommand === "13"){sendData("S\n")}
-            else if (lastSentCommand === "14"){sendData("A\n")}
-            else if (lastSentCommand === "15"){sendData("D\n")}
-            else {sendData("P\n")}
+            else if (lastSentCommand === "13"){sendData("S\n");}
+            else if (lastSentCommand === "14"){sendData("A\n");}
+            else if (lastSentCommand === "15"){sendData("D\n");}
+            else if (lastSentCommand !== "none"){
+                //console.log(lastSentCommand)
+                //sendData("P\n")
+                ;}
         }
 
         let leftAnalogHorizontal = gamepad.axes[0].toFixed(1) * 10;
@@ -77,11 +106,13 @@ function getGamepadState() {
 
         if (Math.abs(leftAnalogHorizontal) > 1 && Math.abs(leftAnalogHorizontal) > Math.abs(leftAnalogVertical))
         {
+            running = false;
             lastSentAnalog = Math.abs(leftAnalogHorizontal);
             sendData("Z" + leftAnalogHorizontal + "\n");
         }
         else if (Math.abs(leftAnalogVertical) > 1)
         {
+            running = false;
             lastSentAnalog = Math.abs(leftAnalogVertical);
             sendData("X" + leftAnalogVertical + "\n");
         }

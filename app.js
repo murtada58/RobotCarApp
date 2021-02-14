@@ -4,7 +4,9 @@ let myCharacteristic2;
 let myValue = 0;
 let myBLE;
 let isConnected = false;
-
+let runnning = false;
+let currentLine = 0;
+load();
 myBLE = new p5ble();
 
 let isTouchDevice = (('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
@@ -12,6 +14,15 @@ let isTouchDevice = (('ontouchstart' in window) || (navigator.maxTouchPoints > 0
 console.log(isTouchDevice)
 
 // event listners
+document.getElementById("connect").addEventListener("click", function(){
+    if (!isConnected){connectToBle();}
+    else
+    {
+        sendData("P\n");
+        setTimeout(function(){myBLE.disconnect();}, 1000);
+    }
+})
+
 document.getElementById("move-speed").addEventListener("change", function(){
     let num = "V" + this.value.toString() + "\n";
     sendData(num);
@@ -22,6 +33,45 @@ document.getElementById("turn-speed").addEventListener("change", function(){
     let num = "T" + this.value.toString() + "\n";
     sendData(num);
     document.getElementById("info-turn-speed").innerHTML = "TURN SPEED: " + this.value.toString();
+})
+
+document.getElementById("MANUAL").addEventListener("click", function(){
+    running = false;
+    document.getElementById("MANUAL").style.color = "#FFFFFF";
+    document.getElementById("FOLLOWER").style.color = "#B6B6B6";
+    document.getElementById("AVOIDANCE").style.color = "#B6B6B6";
+    document.getElementById("CUSTOM").style.color = "#B6B6B6";
+
+    document.getElementById("control").style.display = "grid";
+    document.getElementById("custom-code").style.display = "none";
+    sendData("M\n");
+})
+
+document.getElementById("FOLLOWER").addEventListener("click", function(){
+    document.getElementById("MANUAL").style.color = "#B6B6B6";
+    document.getElementById("FOLLOWER").style.color = "#FFFFFF";
+    document.getElementById("AVOIDANCE").style.color = "#B6B6B6";
+    document.getElementById("CUSTOM").style.color = "#B6B6B6";
+    sendData("L\n");
+})
+
+document.getElementById("AVOIDANCE").addEventListener("click", function(){
+    document.getElementById("MANUAL").style.color = "#B6B6B6";
+    document.getElementById("FOLLOWER").style.color = "#B6B6B6";
+    document.getElementById("AVOIDANCE").style.color = "#FFFFFF";
+    document.getElementById("CUSTOM").style.color = "#B6B6B6";
+    sendData("O\n");
+})
+
+document.getElementById("CUSTOM").addEventListener("click", function(){
+    document.getElementById("MANUAL").style.color = "#B6B6B6";
+    document.getElementById("FOLLOWER").style.color = "#B6B6B6";
+    document.getElementById("AVOIDANCE").style.color = "#B6B6B6";
+    document.getElementById("CUSTOM").style.color = "#FFFFFF";
+
+    document.getElementById("control").style.display = "none";
+    document.getElementById("custom-code").style.display = "grid";
+    sendData("M\n");
 })
 
 if (isTouchDevice)
@@ -37,36 +87,6 @@ if (isTouchDevice)
 
     document.getElementById("RIGHT").addEventListener("touchstart", function(){sendData("D\n");})
     document.getElementById("RIGHT").addEventListener("touchend", function(){sendData("P\n");})
-
-    document.getElementById("connect").addEventListener("click", function(){
-        if (!isConnected){connectToBle();}
-        else
-        {
-            sendData("P\n");
-            setTimeout(function(){myBLE.disconnect();}, 1000);
-        }
-    })
-
-    document.getElementById("MANUAL").addEventListener("touchstart", function(){
-        sendData("M\n");
-        document.getElementById("MANUAL").style.color = "#FFFFFF";
-        document.getElementById("FOLLOWER").style.color = "#B6B6B6";
-        document.getElementById("AVOIDANCE").style.color = "#B6B6B6";
-    })
-
-    document.getElementById("FOLLOWER").addEventListener("touchstart", function(){
-        sendData("L\n");
-        document.getElementById("MANUAL").style.color = "#B6B6B6";
-        document.getElementById("FOLLOWER").style.color = "#FFFFFF";
-        document.getElementById("AVOIDANCE").style.color = "#B6B6B6";
-    })
-
-    document.getElementById("AVOIDANCE").addEventListener("touchstart", function(){
-        sendData("O\n");
-        document.getElementById("MANUAL").style.color = "#B6B6B6";
-        document.getElementById("FOLLOWER").style.color = "#B6B6B6";
-        document.getElementById("AVOIDANCE").style.color = "#FFFFFF";
-    })
 }
 else
 {
@@ -82,39 +102,7 @@ else
     document.getElementById("RIGHT").addEventListener("mousedown", function(){sendData("D\n");})
     document.getElementById("RIGHT").addEventListener("mouseup", function(){sendData("P\n");})
 
-    document.getElementById("connect").addEventListener("mousedown", function(){
-        if (!isConnected){connectToBle();}
-        else
-        {
-            sendData("P\n");
-            setTimeout(function(){myBLE.disconnect();}, 1000);
-        }
-    })
-
-    document.getElementById("MANUAL").addEventListener("mousedown", function(){
-        sendData("M\n");
-        document.getElementById("MANUAL").style.color = "#FFFFFF";
-        document.getElementById("FOLLOWER").style.color = "#B6B6B6";
-        document.getElementById("AVOIDANCE").style.color = "#B6B6B6";
-    })
-
-    document.getElementById("FOLLOWER").addEventListener("mousedown", function(){
-        sendData("L\n");
-        document.getElementById("MANUAL").style.color = "#B6B6B6";
-        document.getElementById("FOLLOWER").style.color = "#FFFFFF";
-        document.getElementById("AVOIDANCE").style.color = "#B6B6B6";
-    })
-
-    document.getElementById("AVOIDANCE").addEventListener("mousedown", function(){
-        sendData("O\n");
-        document.getElementById("MANUAL").style.color = "#B6B6B6";
-        document.getElementById("FOLLOWER").style.color = "#B6B6B6";
-        document.getElementById("AVOIDANCE").style.color = "#FFFFFF";
-    })
 }
-
-
-
 
 function connectToBle() {
     // Connect to a device by passing the service UUID
@@ -172,4 +160,105 @@ function str2ab(str) {
         bufView[i] = str.charCodeAt(i);
     }
     return buf;
+}
+
+function generateBlock()
+{
+    let block = document.createElement("div");
+    block.classList.add("block");
+    let blockContent = "";
+    blockContent += '<p class="command-label" > Command </p> ';
+    blockContent += '<select name="command" class="commands">';
+    blockContent += '<option value="W">Forwards</option>';
+    blockContent += '<option value="S">Backwards</option>';
+    blockContent += '<option value="D">Clockwise</option>';
+    blockContent += '<option value="A">Anti Clockwise</option>';
+    blockContent += '<option value="P">Stop</option>';
+    blockContent += '</select>';
+    blockContent += ' <p class="for" >For</p> ';
+    blockContent += '<input type="number"  pattern="[0-9]{10}" step="1" min="50" value="100" class="time">';
+    blockContent += ' <p class="units" >ms</p> '
+    blockContent += '<button class="remove" onclick="remove(this)">X</button>';
+
+    block.innerHTML = blockContent;
+ 
+    document.getElementById("commands").appendChild(block);
+}
+
+function remove(element)
+{
+    element.parentElement.remove();
+    let temp = document.getElementsByClassName("commands");
+}
+
+
+function save()
+{
+    let commandsArray = [];
+    let temp = document.getElementsByClassName("commands");
+    for (i = 0; i < temp.length; i++)
+    {
+        commandsArray.push(temp[i].value)
+    }
+
+    let timeArray = [];
+    let temp1 = document.getElementsByClassName("time");
+    for (i = 0; i < temp1.length; i++)
+    {
+        timeArray.push(temp1[i].value)
+    }
+
+    localStorage.setItem('commands', JSON.stringify(commandsArray));
+    localStorage.setItem('time', JSON.stringify(timeArray));
+    running = true;
+    currentLine = 0;
+    run();
+}
+
+function load()
+{
+    let commandsArray = JSON.parse(localStorage.getItem('commands'));
+    let timeArray = JSON.parse(localStorage.getItem('time'));
+
+    for (i = 0; i < commandsArray.length; i++)
+    {
+        generateBlock();
+    }
+
+
+    let temp = document.getElementsByClassName("commands");
+    let temp1 = document.getElementsByClassName("time");
+    for (i = 0; i < commandsArray.length; i++)
+    {
+        temp[i].value = commandsArray[i];
+        temp1[i].value = timeArray[i];
+    }
+}
+
+function run()
+{
+    let commandsArray = [];
+    let temp = document.getElementsByClassName("commands");
+    for (i = 0; i < temp.length; i++)
+    {
+        commandsArray.push(temp[i].value)
+    }
+
+    let timeArray = [];
+    let temp1 = document.getElementsByClassName("time");
+    for (i = 0; i < temp1.length; i++)
+    {
+        timeArray.push(temp1[i].value)
+    }
+
+    if (running && currentLine < commandsArray.length)
+    {
+        currentLine++;
+        sendData(commandsArray[currentLine-1] + "\n");
+        setTimeout(run, timeArray[currentLine-1])
+    }
+    else
+    {
+        sendData("P\n")
+    }
 }

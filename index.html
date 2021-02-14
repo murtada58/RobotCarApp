@@ -37,10 +37,11 @@
                 <button id="MANUAL"><h2>MANUAL CONTROL</h2></button>
                 <button id="FOLLOWER"><h2>LINE FOLLOWER</h2></button>
                 <button id="AVOIDANCE"><h2>OBSTACLE AVOIDANCE</h2></button>
+                <button id="CUSTOM"><h2>CUSTOM SEQUENCE</h2></button>
             </div>
         </section>
 
-        <main id="control">
+        <div id="control">
             <button class="move-buttons" id="UP">UP</button>
             <button class="move-buttons" id="LEFT">LEFT</button>
             <button class="move-buttons" id="DOWN">DOWN</button>
@@ -51,7 +52,14 @@
                 <h2 id="turn-speed-label">TURN SPEED:</h2>
                 <input class="slider" id="turn-speed" type="range" min="0" max="255" value="255">
             </div>
-        </main>
+        </div>
+
+        <div id="custom-code">
+            <h1 class="name">for block</h1>
+            <div id="commands"></div>
+            <button id="add" onclick="generateBlock()">ADD COMMAND</button>
+            <button id="save" onclick="save()">SAVE AND RUN</button>
+        </div>
     </div>
 </body>
 </html>
