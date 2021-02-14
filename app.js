@@ -268,18 +268,21 @@ function load()
     let commandsArray = JSON.parse(localStorage.getItem('commands'));
     let timeArray = JSON.parse(localStorage.getItem('time'));
 
-    for (i = 0; i < commandsArray.length; i++)
+    if (commandsArray)
     {
-        generateBlock();
-    }
+        for (i = 0; i < commandsArray.length; i++)
+        {
+            generateBlock();
+        }
 
 
-    let temp = document.getElementsByClassName("commands");
-    let temp1 = document.getElementsByClassName("time");
-    for (i = 0; i < commandsArray.length; i++)
-    {
-        temp[i].value = commandsArray[i];
-        temp1[i].value = timeArray[i];
+        let temp = document.getElementsByClassName("commands");
+        let temp1 = document.getElementsByClassName("time");
+        for (i = 0; i < commandsArray.length; i++)
+        {
+            temp[i].value = commandsArray[i];
+            temp1[i].value = timeArray[i];
+        }
     }
 }
 
