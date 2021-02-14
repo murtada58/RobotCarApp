@@ -306,7 +306,7 @@ button:hover {
   min-width: 40em;
   -ms-grid-rows: 1fr 4fr 1fr 1fr;
       grid-template-rows: 1fr 4fr 1fr 1fr;
-      grid-template-areas: "title" "commands" "add";
+      grid-template-areas: "title" "commands" "add" "save";
 }
 
 .name {
@@ -334,6 +334,12 @@ button:hover {
   -ms-grid-row: 3;
   -ms-grid-column: 1;
   grid-area: add;
+}
+
+#save {
+  -ms-grid-row: 4;
+  -ms-grid-column: 1;
+  grid-area: save;
 }
 
 .block {
@@ -402,14 +408,6 @@ button:hover {
   -ms-grid-row: 3;
   -ms-grid-row-span: 1;
   grid-row: 3 / 4;
-}
-
-.save {
-  -ms-grid-column: 1;
-  -ms-grid-column-span: 3;
-  grid-column: 1 / 4;
-  -ms-grid-row: 4;
-  -ms-grid-row-span: 1;
-  grid-row: 4 / 5;
+  background-color: #d82a2a;
 }
 /*# sourceMappingURL=styles.css.map */

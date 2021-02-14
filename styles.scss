@@ -238,7 +238,8 @@ button:hover {
     grid-template-areas: 
         "title"
         "commands"
-        "add";
+        "add"
+        "save";
 }
 
 .name {
@@ -259,6 +260,11 @@ button:hover {
 
 #add {
     grid-area: add;
+}
+
+#save {
+    grid-area: save;
+    //background-color: #1fb939;
 }
 
 .block {
@@ -300,9 +306,5 @@ button:hover {
 .remove {
     grid-column: 1 / 4;
     grid-row: 3 / 4;
-}
-
-.save {
-    grid-column: 1 / 4;
-    grid-row: 4 / 5;
+    background-color: #d82a2a;
 }
