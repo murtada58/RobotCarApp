@@ -26,20 +26,21 @@ function getGamepadState() {
         const pressedButtons = gamepad.buttons
         .map((button, id) => ({id, button}))
         .filter(isPressed);
-        let currentMoveButton = "P"
+        let currentMoveButton = "P";
         // Print the pressed buttons to our HTML
         for (const button of pressedButtons) {
             //console.log(button);
             //console.log(`Button ${button.id} was pressed.`)
-            running = false;
 
             if (button.id === 12 || button.id === 13 || button.id === 14 || button.id === 15)
             {
+                running = false;
                 currentMoveButton = button.id.toString();
                 //console.log(button.id)
             }
             else if(button.id === 0)
             {
+                running = false;
                 currentMoveButton = "none";
                 sendData("M\n");
                 document.getElementById("MANUAL").style.color = "#FFFFFF";
@@ -52,6 +53,7 @@ function getGamepadState() {
             }
             else if (button.id === 1)
             {
+                running = false;
                 currentMoveButton = "none";
                 sendData("O\n");
                 document.getElementById("MANUAL").style.color = "#B6B6B6";
@@ -61,6 +63,7 @@ function getGamepadState() {
             }
             else if (button.id === 2)
             {
+                running = false;
                 currentMoveButton = "none";
                 sendData("L\n");
                 document.getElementById("MANUAL").style.color = "#B6B6B6";
@@ -68,7 +71,7 @@ function getGamepadState() {
                 document.getElementById("AVOIDANCE").style.color = "#B6B6B6";
                 document.getElementById("CUSTOM").style.color = "#B6B6B6";
             }
-            else if (button.id === 3)
+            else if (button.id === 3 && !running)
             {   
                 currentMoveButton = "none";
                 sendData("M\n");
@@ -81,22 +84,19 @@ function getGamepadState() {
                 document.getElementById("custom-code").style.display = "grid";
                 currentLine = 0;
                 running = true;
-                setTimeout(run, 150);
+                setTimeout(run, 50);
             }
             
         }
 
-        if (lastSentCommand !== currentMoveButton)
+        if (lastSentCommand !== currentMoveButton && !running)
         {
             lastSentCommand = currentMoveButton;
             if (lastSentCommand === "12"){sendData("W\n");}
             else if (lastSentCommand === "13"){sendData("S\n");}
             else if (lastSentCommand === "14"){sendData("A\n");}
             else if (lastSentCommand === "15"){sendData("D\n");}
-            else if (lastSentCommand !== "none"){
-                //console.log(lastSentCommand)
-                //sendData("P\n")
-                ;}
+            else if (lastSentCommand !== "none"){sendData("P\n");}
         }
 
         let leftAnalogHorizontal = gamepad.axes[0].toFixed(1) * 10;

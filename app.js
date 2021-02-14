@@ -260,5 +260,6 @@ function run()
     else
     {
         sendData("P\n")
+        running = false;
     }
 }
