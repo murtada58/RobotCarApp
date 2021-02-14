@@ -14,15 +14,6 @@ let isTouchDevice = (('ontouchstart' in window) || (navigator.maxTouchPoints > 0
 console.log(isTouchDevice)
 
 // event listners
-document.getElementById("connect").addEventListener("click", function(){
-    if (!isConnected){connectToBle();}
-    else
-    {
-        sendData("P\n");
-        setTimeout(function(){myBLE.disconnect();}, 1000);
-    }
-})
-
 document.getElementById("move-speed").addEventListener("change", function(){
     let num = "V" + this.value.toString() + "\n";
     sendData(num);
@@ -33,45 +24,6 @@ document.getElementById("turn-speed").addEventListener("change", function(){
     let num = "T" + this.value.toString() + "\n";
     sendData(num);
     document.getElementById("info-turn-speed").innerHTML = "TURN SPEED: " + this.value.toString();
-})
-
-document.getElementById("MANUAL").addEventListener("click", function(){
-    running = false;
-    document.getElementById("MANUAL").style.color = "#FFFFFF";
-    document.getElementById("FOLLOWER").style.color = "#B6B6B6";
-    document.getElementById("AVOIDANCE").style.color = "#B6B6B6";
-    document.getElementById("CUSTOM").style.color = "#B6B6B6";
-
-    document.getElementById("control").style.display = "grid";
-    document.getElementById("custom-code").style.display = "none";
-    sendData("M\n");
-})
-
-document.getElementById("FOLLOWER").addEventListener("click", function(){
-    document.getElementById("MANUAL").style.color = "#B6B6B6";
-    document.getElementById("FOLLOWER").style.color = "#FFFFFF";
-    document.getElementById("AVOIDANCE").style.color = "#B6B6B6";
-    document.getElementById("CUSTOM").style.color = "#B6B6B6";
-    sendData("L\n");
-})
-
-document.getElementById("AVOIDANCE").addEventListener("click", function(){
-    document.getElementById("MANUAL").style.color = "#B6B6B6";
-    document.getElementById("FOLLOWER").style.color = "#B6B6B6";
-    document.getElementById("AVOIDANCE").style.color = "#FFFFFF";
-    document.getElementById("CUSTOM").style.color = "#B6B6B6";
-    sendData("O\n");
-})
-
-document.getElementById("CUSTOM").addEventListener("click", function(){
-    document.getElementById("MANUAL").style.color = "#B6B6B6";
-    document.getElementById("FOLLOWER").style.color = "#B6B6B6";
-    document.getElementById("AVOIDANCE").style.color = "#B6B6B6";
-    document.getElementById("CUSTOM").style.color = "#FFFFFF";
-
-    document.getElementById("control").style.display = "none";
-    document.getElementById("custom-code").style.display = "grid";
-    sendData("M\n");
 })
 
 if (isTouchDevice)
@@ -87,6 +39,54 @@ if (isTouchDevice)
 
     document.getElementById("RIGHT").addEventListener("touchstart", function(){sendData("D\n");})
     document.getElementById("RIGHT").addEventListener("touchend", function(){sendData("P\n");})
+
+    document.getElementById("connect").addEventListener("click", function(){
+        if (!isConnected){connectToBle();}
+        else
+        {
+            sendData("P\n");
+            setTimeout(function(){myBLE.disconnect();}, 100);
+        }
+    })
+
+    document.getElementById("MANUAL").addEventListener("touchstart", function(){
+        running = false;
+        document.getElementById("MANUAL").style.color = "#FFFFFF";
+        document.getElementById("FOLLOWER").style.color = "#B6B6B6";
+        document.getElementById("AVOIDANCE").style.color = "#B6B6B6";
+        document.getElementById("CUSTOM").style.color = "#B6B6B6";
+    
+        document.getElementById("control").style.display = "grid";
+        document.getElementById("custom-code").style.display = "none";
+        sendData("M\n");
+    })
+    
+    document.getElementById("FOLLOWER").addEventListener("touchstart", function(){
+        document.getElementById("MANUAL").style.color = "#B6B6B6";
+        document.getElementById("FOLLOWER").style.color = "#FFFFFF";
+        document.getElementById("AVOIDANCE").style.color = "#B6B6B6";
+        document.getElementById("CUSTOM").style.color = "#B6B6B6";
+        sendData("L\n");
+    })
+    
+    document.getElementById("AVOIDANCE").addEventListener("touchstart", function(){
+        document.getElementById("MANUAL").style.color = "#B6B6B6";
+        document.getElementById("FOLLOWER").style.color = "#B6B6B6";
+        document.getElementById("AVOIDANCE").style.color = "#FFFFFF";
+        document.getElementById("CUSTOM").style.color = "#B6B6B6";
+        sendData("O\n");
+    })
+    
+    document.getElementById("CUSTOM").addEventListener("touchstart", function(){
+        document.getElementById("MANUAL").style.color = "#B6B6B6";
+        document.getElementById("FOLLOWER").style.color = "#B6B6B6";
+        document.getElementById("AVOIDANCE").style.color = "#B6B6B6";
+        document.getElementById("CUSTOM").style.color = "#FFFFFF";
+    
+        document.getElementById("control").style.display = "none";
+        document.getElementById("custom-code").style.display = "grid";
+        sendData("M\n");
+    })
 }
 else
 {
@@ -101,6 +101,54 @@ else
 
     document.getElementById("RIGHT").addEventListener("mousedown", function(){sendData("D\n");})
     document.getElementById("RIGHT").addEventListener("mouseup", function(){sendData("P\n");})
+
+    document.getElementById("connect").addEventListener("click", function(){
+        if (!isConnected){connectToBle();}
+        else
+        {
+            sendData("P\n");
+            setTimeout(function(){myBLE.disconnect();}, 100);
+        }
+    })
+
+    document.getElementById("MANUAL").addEventListener("click", function(){
+        running = false;
+        document.getElementById("MANUAL").style.color = "#FFFFFF";
+        document.getElementById("FOLLOWER").style.color = "#B6B6B6";
+        document.getElementById("AVOIDANCE").style.color = "#B6B6B6";
+        document.getElementById("CUSTOM").style.color = "#B6B6B6";
+    
+        document.getElementById("control").style.display = "grid";
+        document.getElementById("custom-code").style.display = "none";
+        sendData("M\n");
+    })
+    
+    document.getElementById("FOLLOWER").addEventListener("click", function(){
+        document.getElementById("MANUAL").style.color = "#B6B6B6";
+        document.getElementById("FOLLOWER").style.color = "#FFFFFF";
+        document.getElementById("AVOIDANCE").style.color = "#B6B6B6";
+        document.getElementById("CUSTOM").style.color = "#B6B6B6";
+        sendData("L\n");
+    })
+    
+    document.getElementById("AVOIDANCE").addEventListener("click", function(){
+        document.getElementById("MANUAL").style.color = "#B6B6B6";
+        document.getElementById("FOLLOWER").style.color = "#B6B6B6";
+        document.getElementById("AVOIDANCE").style.color = "#FFFFFF";
+        document.getElementById("CUSTOM").style.color = "#B6B6B6";
+        sendData("O\n");
+    })
+    
+    document.getElementById("CUSTOM").addEventListener("click", function(){
+        document.getElementById("MANUAL").style.color = "#B6B6B6";
+        document.getElementById("FOLLOWER").style.color = "#B6B6B6";
+        document.getElementById("AVOIDANCE").style.color = "#B6B6B6";
+        document.getElementById("CUSTOM").style.color = "#FFFFFF";
+    
+        document.getElementById("control").style.display = "none";
+        document.getElementById("custom-code").style.display = "grid";
+        sendData("M\n");
+    })
 
 }
 
