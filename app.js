@@ -6,6 +6,7 @@ let myBLE;
 let isConnected = false;
 let runnning = false;
 let currentLine = 0;
+let currentView = "control"
 load();
 myBLE = new p5ble();
 
@@ -56,8 +57,7 @@ if (isTouchDevice)
         document.getElementById("AVOIDANCE").style.color = "#B6B6B6";
         document.getElementById("CUSTOM").style.color = "#B6B6B6";
     
-        document.getElementById("control").style.display = "grid";
-        document.getElementById("custom-code").style.display = "none";
+        switchMainViewTo("control")
         sendData("M\n");
     })
     
@@ -66,6 +66,8 @@ if (isTouchDevice)
         document.getElementById("FOLLOWER").style.color = "#FFFFFF";
         document.getElementById("AVOIDANCE").style.color = "#B6B6B6";
         document.getElementById("CUSTOM").style.color = "#B6B6B6";
+
+        switchMainViewTo("line-follower")
         sendData("L\n");
     })
     
@@ -74,6 +76,8 @@ if (isTouchDevice)
         document.getElementById("FOLLOWER").style.color = "#B6B6B6";
         document.getElementById("AVOIDANCE").style.color = "#FFFFFF";
         document.getElementById("CUSTOM").style.color = "#B6B6B6";
+
+        switchMainViewTo("obstacle-avoidance")
         sendData("O\n");
     })
     
@@ -83,8 +87,7 @@ if (isTouchDevice)
         document.getElementById("AVOIDANCE").style.color = "#B6B6B6";
         document.getElementById("CUSTOM").style.color = "#FFFFFF";
     
-        document.getElementById("control").style.display = "none";
-        document.getElementById("custom-code").style.display = "grid";
+        switchMainViewTo("custom-code")
         sendData("M\n");
     })
 }
@@ -118,8 +121,7 @@ else
         document.getElementById("AVOIDANCE").style.color = "#B6B6B6";
         document.getElementById("CUSTOM").style.color = "#B6B6B6";
     
-        document.getElementById("control").style.display = "grid";
-        document.getElementById("custom-code").style.display = "none";
+        switchMainViewTo("control")
         sendData("M\n");
     })
     
@@ -128,6 +130,7 @@ else
         document.getElementById("FOLLOWER").style.color = "#FFFFFF";
         document.getElementById("AVOIDANCE").style.color = "#B6B6B6";
         document.getElementById("CUSTOM").style.color = "#B6B6B6";
+        switchMainViewTo("line-follower")
         sendData("L\n");
     })
     
@@ -136,6 +139,7 @@ else
         document.getElementById("FOLLOWER").style.color = "#B6B6B6";
         document.getElementById("AVOIDANCE").style.color = "#FFFFFF";
         document.getElementById("CUSTOM").style.color = "#B6B6B6";
+        switchMainViewTo("obstacle-avoidance")
         sendData("O\n");
     })
     
@@ -145,11 +149,21 @@ else
         document.getElementById("AVOIDANCE").style.color = "#B6B6B6";
         document.getElementById("CUSTOM").style.color = "#FFFFFF";
     
-        document.getElementById("control").style.display = "none";
-        document.getElementById("custom-code").style.display = "grid";
+        switchMainViewTo("custom-code")
         sendData("M\n");
     })
 
+}
+
+function switchMainViewTo(view)
+{
+    document.getElementById("control").style.display = "none";
+    document.getElementById("line-follower").style.display = "none";
+    document.getElementById("obstacle-avoidance").style.display = "none";
+    document.getElementById("custom-code").style.display = "none";
+
+    currentView = view
+    document.getElementById(view).style.display = "grid";
 }
 
 function connectToBle() {
@@ -179,6 +193,54 @@ function gotCharacteristics(error, characteristics) {
 // A function that will be called once got values
 function gotValue(value) {
     console.log('value: ', value);
+    if (currentView === "line-follower")
+    {
+        if (value[0] === "s")
+        {
+            document.getElementById("line-follower-commands").innerHTML = "Line lost car stopped";
+        }
+        else
+        {
+            if (value[0] === "0") {document.getElementById("left-sensor").style.backgroundColor = "#000000";}
+            else {document.getElementById("left-sensor").style.backgroundColor = "#FFFFFF";}
+
+            if (value[1] === "0") {document.getElementById("middle-sensor").style.backgroundColor = "#000000";}
+            else {document.getElementById("middle-sensor").style.backgroundColor = "#FFFFFF";}
+
+            if (value[2] === "0") {document.getElementById("right-sensor").style.backgroundColor = "#000000";}
+            else {document.getElementById("right-sensor").style.backgroundColor = "#FFFFFF";}
+
+            if (value[0] === "1" && value[1] === "1" && value[2] === "1")
+            {
+                document.getElementById("line-follower-commands").innerHTML = "Searching for track";
+            }
+            else if (value[0] === "0")
+            {
+                document.getElementById("line-follower-commands").innerHTML = "Rotating anticlockwise";
+            }
+            else if (value[2] === "0")
+            {
+                document.getElementById("line-follower-commands").innerHTML = "Rotating clockwise";
+            }
+            else if (value[1] === "0")
+            {
+                document.getElementById("line-follower-commands").innerHTML = "Moving forwards";
+            }
+        }
+    }
+    else if (currentView === "obstacle-avoidance")
+    {
+        if (value[0] === "f")
+        {
+            document.getElementById("obstacle-avoidance-distance").innerHTML = "Distance: " + value.substring(1) + "cm";
+            document.getElementById("obstacle-avoidance-commands").innerHTML = "Moving forwards";
+        }
+        else if (value[0] === "r")
+        {
+            document.getElementById("obstacle-avoidance-distance").innerHTML = "Distance: " + value.substring(1) + "cm";
+            document.getElementById("obstacle-avoidance-commands").innerHTML = "Obstacle detected redirecting";
+        }
+    }
 }
 
 function onDisconnected() {

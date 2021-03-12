@@ -13,7 +13,7 @@ body {
       grid-template-columns: 1fr 3fr;
   -ms-grid-rows: 1fr 9fr;
       grid-template-rows: 1fr 9fr;
-      grid-template-areas: "name navbar" "info control";
+      grid-template-areas: "name navbar" "info main";
   height: 100vh;
   width: 100%;
 }
@@ -99,6 +99,7 @@ button {
   color: #FFFFFF;
   padding-left: 1em;
   padding-right: 1em;
+  min-width: 20em;
 }
 
 #info h1, #info h2 {
@@ -138,7 +139,7 @@ button:hover {
 #control {
   -ms-grid-row: 2;
   -ms-grid-column: 2;
-  grid-area: control;
+  grid-area: main;
   background-color: #FFFFFF;
   display: -ms-grid;
   display: grid;
@@ -297,10 +298,106 @@ button:hover {
   cursor: pointer;
 }
 
+#line-follower {
+  -ms-grid-row: 2;
+  -ms-grid-column: 2;
+  grid-area: main;
+  display: none;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  min-width: 40em;
+  -ms-grid-rows: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+  -ms-grid-columns: 1fr, 1fr, 1fr;
+      grid-template-columns: 1fr, 1fr, 1fr;
+      grid-template-areas: "left     middle   right" "commands commands commands";
+}
+
+.sensor {
+  background-color: #FFFFFF;
+  border-radius: 100%;
+  border-color: #000000;
+  border-style: solid;
+  border-width: 5px;
+  width: 100px;
+  height: 100px;
+  margin: 25px;
+}
+
+#left-sensor {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: left;
+}
+
+#middle-sensor {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: middle;
+}
+
+#right-sensor {
+  -ms-grid-row: 1;
+  -ms-grid-column: 3;
+  grid-area: right;
+}
+
+#line-follower-commands {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  grid-area: commands;
+  text-align: center;
+  font-size: 4rem;
+  width: 100%;
+}
+
+#obstacle-avoidance {
+  -ms-grid-row: 2;
+  -ms-grid-column: 2;
+  grid-area: main;
+  display: none;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  min-width: 40em;
+  -ms-grid-rows: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      grid-template-areas: "distance" "commands";
+}
+
+#obstacle-avoidance-distance {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: distance;
+  text-align: center;
+  font-size: 4rem;
+  width: 100%;
+}
+
+#obstacle-avoidance-commands {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  grid-area: commands;
+  text-align: center;
+  font-size: 4rem;
+  width: 100%;
+}
+
 #custom-code {
   -ms-grid-row: 2;
   -ms-grid-column: 2;
-  grid-area: control;
+  grid-area: main;
   display: none;
   text-align: center;
   min-width: 40em;

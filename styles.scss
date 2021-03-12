@@ -14,7 +14,7 @@ body {
     grid-template-rows: 1fr 9fr;
     grid-template-areas: 
         "name navbar"
-        "info control";
+        "info main";
     height: 100vh;
     width: 100%;
 }
@@ -81,7 +81,7 @@ button {
     color: #FFFFFF;
     padding-left: 1em;
     padding-right: 1em;
-
+    min-width: 20em;
     h1, h2{
         margin: 0.5em;
     }
@@ -115,7 +115,7 @@ button:hover {
 }
 
 #control {
-    grid-area: control;
+    grid-area: main;
     background-color: #FFFFFF;
     display: grid;
     min-width: 40em;
@@ -123,7 +123,7 @@ button:hover {
     grid-template-rows: 1fr 1fr 1fr;
     grid-gap: 1em;
     padding: 1em;
-    color: #FFFFFF;   
+    color: #FFFFFF;
 }
 
 .move-buttons {
@@ -207,30 +207,103 @@ button:hover {
     opacity: 0.7;
     -webkit-transition: .2s;
     transition: opacity .2s;
-  }
-  
-  .slider:hover {
-    opacity: 1;
-  }
-  
-  .slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 25px;
-    height: 25px;
-    background: $main-color;
-    cursor: pointer;
-  }
-  
-  .slider::-moz-range-thumb {
-    width: 25px;
-    height: 25px;
-    background: $main-color;
-    cursor: pointer;
-  }
+}
 
-  #custom-code {
-    grid-area: control;
+.slider:hover {
+opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+-webkit-appearance: none;
+appearance: none;
+width: 25px;
+height: 25px;
+background: $main-color;
+cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+width: 25px;
+height: 25px;
+background: $main-color;
+cursor: pointer;
+}
+
+#line-follower {
+    grid-area: main;
+    display: none;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    min-width: 40em;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr, 1fr, 1fr;
+    grid-template-areas: 
+        "left     middle   right"
+        "commands commands commands";
+}
+
+.sensor {
+    background-color: #FFFFFF;
+    border-radius: 100%;
+    border-color: #000000;
+    border-style: solid;
+    border-width: 5px;
+    width: 100px;
+    height: 100px;
+    margin: 25px;
+}
+
+#left-sensor {
+    grid-area: left;
+}
+
+#middle-sensor {
+    grid-area: middle;
+}
+
+#right-sensor {
+    grid-area: right;
+}
+
+#line-follower-commands {
+    grid-area: commands;
+    text-align: center;
+    font-size: 4rem;
+    width: 100%;
+}
+
+
+#obstacle-avoidance {
+    grid-area: main;
+    display: none;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    min-width: 40em;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: 
+        "distance"
+        "commands";
+}
+
+#obstacle-avoidance-distance {
+    grid-area: distance;
+    text-align: center;
+    font-size: 4rem;
+    width: 100%;
+}
+
+#obstacle-avoidance-commands {
+    grid-area: commands;
+    text-align: center;
+    font-size: 4rem;
+    width: 100%;
+}
+
+
+#custom-code {
+    grid-area: main;
     display: none;
     text-align: center;
     min-width: 40em;
