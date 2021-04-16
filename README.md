@@ -4,6 +4,8 @@ This is an application t.hat allows the elegoo robot car to be controlled throug
 
 The app should work on both pc and mobile; however, if you wish to use the app make sure that you are using either the chrome browser or the edge browser as other browsers do not have support for the bluetooth API yet.
 
+Web app: https://murtada58.github.io/RobotCarApp/
+
 To use the application first upload the arduino sketch in this repositry onto the robot car.
 
 Once the script has been uploaded press the connect button on the top right of the applications page to connect with the bluetooth module on the car, check if the DISCONNECTED status on the left changes to CONNECTED to ensure that you have successfully paired with the car.
